@@ -1,0 +1,196 @@
+@charset "utf-8";
+@import "../../node_modules/normalize.css";//初始化样式表
+/*-----------------------------------------------------------------------------------
+
+	Css Name: watanabe.scss
+	Description: watanabeyu's style sheet for flexible
+	Author: WatanabeYu
+
+----------------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	参数
+-----------------------------------------------------------------*/
+//设计稿基准 iphone6
+$design : 750;
+$dpr : 2;
+$typeArea : 10rem;
+
+//视觉基准字号
+$baseViewSize: $design/10!default;//基于视觉稿横屏尺寸/100得出的基准font-size
+@function size($px) {
+  @return $px / $baseViewSize * 1rem;
+}
+
+//字号处理
+@for $i from 1 through 200 {
+  %fs-#{$i} { font-size: $i/$dpr*1px}
+  [data-dpr="2"] %fs-#{$i} { font-size: $i/$dpr*2px}
+  [data-dpr="3"] %fs-#{$i} { font-size: $i/$dpr*3px}
+}
+%fs-inherit{
+  font-size: inherit;
+}
+
+
+//定义字体
+$ff: 'PingFang SC','Microsoft Yahei','Droid Sans', Helvetica, Arial, sans-serif;
+//基准栅栏
+$bar: size(15*$dpr)!default;
+$bar_sm: size(5*$dpr);
+$bar_md: size(15*$dpr);
+$bar_lg: size(25*$dpr);
+//定义基准行高
+$lh: 1.5!default;
+/*透明度*/
+$opacity: 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0!default;
+/*定义色彩 LV越小(越高) 颜色越正*/
+$color_success:#09AA09!default;
+$color_info:#2dbbed!default;
+$color_primary:#067bd8!default;
+$color_warning: #ff8400 !default;
+$color_danger:#FA4D24!default;
+$color_sim: #333 #666 #a6a6a6 #ccc #ddd #ebebeb #f9f9f9 #f5f5f5 #f3f3f3 #fff!default;
+$color_link: nth($color_sim,1) nth($color_sim,2) !default;//第一个值为默认值，第二个鼠标滑过值
+/*下边距*/
+$mbs: (
+  mb-5:5px,
+  mb-10:10px,
+  mb-15:15px,
+  mb-20:20px,
+  mb-25:25px,
+  mb-30:30px,
+  mb-35:35px,
+  mb-40:40px,
+  mb-45:45px,
+  mb-50:50px,
+  mb-55:55px,
+  mb-60:60px,
+  mb-65:65px,
+  mb-70:70px,
+);
+@each $name, $size in $mbs {
+  .#{$name} {
+    margin-bottom: #{$size};
+  }
+}
+
+
+/* ----------------------------------------------------------------
+	附加样式
+-----------------------------------------------------------------*/
+
+/*按钮颜色*/
+$btn-styles:
+    (btn-primary, $color_primary, nth($color_sim,10)),
+    (btn-info, $color_info, nth($color_sim,10)),
+    (btn-warning, $color_warning, nth($color_sim,10)),
+    (btn-danger,$color_danger,nth($color_sim,10)),
+    (btn-white,nth($color_sim,10),nth($color_sim,2)),
+    (btn-grey,nth($color_sim,3), nth($color_sim,10));
+
+@each $style, $color-bg, $color-f in $btn-styles {
+  .#{$style} {
+    background: $color-bg;
+    color: $color-f;
+    &[disabled='disabled'],&.unable{
+      color: lighten($color-bg,10%);
+      cursor: not-allowed;
+      &:hover,&:active,&:focus{
+        opacity:nth($opacity,10);
+      }
+    }
+    &.btn-border{
+      border: 2px solid $color-bg;
+      color: $color-bg;
+      background:none;
+      &:hover,&:active,&:focus{
+        opacity:nth($opacity,6);
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+	定义代码片段 前缀hack已用autoprefixer-loader代替
+-----------------------------------------------------------------*/
+/*媒体查询*/
+@mixin media($res-min,$res-max){
+  @media only screen and ( min-device-width: $res-min ) and ( max-device-width: $res-max )
+  {
+    @content;
+  }
+}
+@mixin media-min($res-min){
+  @media only screen and ( min-device-width: $res-min )
+  {
+    @content;
+  }
+}
+@mixin media-max($res-max){
+  @media only screen and ( max-device-width: $res-max )
+  {
+    @content;
+  }
+}
+
+/*省略显示点点点,移动端通用*/
+@mixin ell($line:1){
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+/*flex*/
+//定义父元素布局为盒模型
+.flex-box{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  //盒模型垂直布局
+  &.flex-v {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+//flex子元素占据剩余的空间比例
+@mixin flex($num){
+  -webkit-box-flex: $num;
+  -webkit-flex: $num;
+  -webkit-flex: $num;
+  flex: $num;
+}
+.flex-inner{
+  //子元素比例
+  @for $i from 1 through 12 {
+    &.flex-#{$i} { -webkit-box-flex:$i;-webkit-flex:$i;-ms-flex:$i;flex:$i}
+  }
+  //子元素垂直居中
+  &.flex-align-center {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  //子元素水平居中
+  &.flex-pack-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  //子元素两端对齐
+  &.flex-pack-justify {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+}

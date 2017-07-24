@@ -1,0 +1,48 @@
+@charset "utf-8";
+@import "default";//sass参数以及flexible方案
+
+*{
+  box-sizing: border-box;
+}
+
+@font-face
+{
+  font-family: 'SourceHanSansCN';
+  src: url('../font/SourceHanSansCN-Normal.otf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+html{
+  min-height: 100%;
+  overflow: auto;
+  body{
+    height: auto;
+    min-height: 100%;
+    position: relative;
+    background: nth($color_sim,6);
+    color: nth($color_sim,2);
+  }
+}
+
+#app{
+  width: 80%;
+  margin: 100px auto;
+  text-align: center;
+  font-family: SourceHanSansCN sans-serif;
+  img{
+    @keyframes rotating{
+      from{transform:rotate(0)}
+      to{transform:rotate(360deg)}
+    }
+    width: 100px;
+    height: 100px;
+    animation:rotating 15s linear infinite;
+    border-radius: 50%;
+  }
+  p{
+    &.muted{
+      color: nth($color_sim,3);
+    }
+  }
+}
