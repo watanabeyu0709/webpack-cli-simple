@@ -1,3 +1,5 @@
+# 这是一个简单的自用webpack脚手架
+
 ### 安装步骤
 
     1.请确保全局安装了 webpack npm
@@ -54,7 +56,7 @@
 
     字体：压缩
 
-### npm包配置
+### npm包说明
 
 * devDependencies 为基础的配置项
 
