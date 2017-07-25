@@ -1,5 +1,5 @@
-import './css/app.scss'//引用样式示例
-import Icon from './img/icon.jpg';//引用图片示例
+import '../css/app.scss'//引用样式示例
+import Icon from '../img/icon.jpg';//引用图片示例
 import 'font-awesome/css/font-awesome.min.css'//fa字体图标示例
 
 document.getElementById('app').innerHTML = (`

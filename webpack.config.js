@@ -19,7 +19,7 @@ const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?
 module.exports = {
     devtool: "inline-source-map",
     entry: {
-        index: './src/index.js'
+        index: './src/js/index.js'
     },
     output: {
         filename: process.env.NODE_ENV === 'production'?'js/[name].bundle.[chunkhash].js':'js/[name].bundle.js',
