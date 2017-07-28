@@ -1,5 +1,5 @@
 {
-  "name": "webpack-demo",
+  "name": "webpack-cli-simple",
   "version": "1.0.0",
   "description": "selfuse webpack-cli with base config",
   "main": "index.js",

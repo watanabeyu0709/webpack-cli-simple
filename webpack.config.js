@@ -17,7 +17,7 @@ const extractCSS = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'
 const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-sass.[chunkhash].css':'css/[name]-sass.css');//导出sass
 
 module.exports = {
-    devtool: "inline-source-map",
+    devtool: process.env.NODE_ENV === 'production'?"inline-source-map":"source map",
     entry: {
         index: './src/js/index.js'
     },
