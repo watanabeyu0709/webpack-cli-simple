@@ -39,7 +39,7 @@ module.exports = {
                 test: /\.less$/,
                 use: extractSass.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader','autoprefixer-loader'],
+                    use: ['css-loader', 'less-loader','postcss-loader'],
                     publicPath: "../"
                 })
             },
@@ -47,7 +47,7 @@ module.exports = {
                 test: /\.scss/i,
                 use: extractSass.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader','autoprefixer-loader'],
+                    use: ['css-loader', 'sass-loader','postcss-loader'],
                     publicPath: "../"
                 })
             },
