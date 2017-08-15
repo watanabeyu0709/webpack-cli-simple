@@ -18,7 +18,9 @@ const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?
 module.exports = {
     devtool: process.env.NODE_ENV === 'production'?"inline-source-map":"source map",
     entry: {
-        index: './src/js/index.js'
+        index: './src/js/index.js',
+        /* //其他页面
+        other: './src/js/other.js'*/
     },
     output: {
         filename: process.env.NODE_ENV === 'production'?'js/[name].bundle.[chunkhash].js':'js/[name].bundle.js',
@@ -125,6 +127,14 @@ module.exports = {
             hash: true,
             chunks: ['index'],
         }),
+        /* //其他页面
+        new HtmlWebpackPlugin({
+            filename: 'other.html',
+            template: __dirname + "/src/other.tmpl.html",
+            inject: 'body',
+            hash: true,
+            chunks: ['other'],
+        }),*/
         //丑化JS
         new webpack.optimize.UglifyJsPlugin({
             compress: process.env.NODE_ENV === 'production'
