@@ -12,7 +12,6 @@
   "author": "watanabeyu",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",

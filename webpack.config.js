@@ -11,7 +11,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//html模板引擎
 const CleanWebpackPlugin = require('clean-webpack-plugin');//构建时清理
-const autoprefixer = require('autoprefixer');//补全css各种hack
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//分离样式表
 const extractCSS = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-css.[chunkhash].css':'css/[name]-css.css');//导出css
 const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-sass.[chunkhash].css':'css/[name]-sass.css');//导出sass
@@ -122,15 +121,18 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: __dirname + "/src/index.tmpl.html",
+            inject: 'body',
+            hash: true,
+            chunks: ['index'],
         }),
         //丑化JS
         new webpack.optimize.UglifyJsPlugin({
             compress: process.env.NODE_ENV === 'production'
         }),
-        //提出公共模块
-        new webpack.optimize.CommonsChunkPlugin({
+        //提出公共模块 需要页面中引用
+        /*new webpack.optimize.CommonsChunkPlugin({
             name: 'common'
-        }),
+        }),*/
         //样式导出配置
         extractCSS,
         extractSass
