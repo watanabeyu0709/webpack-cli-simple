@@ -20,7 +20,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");//分离样式�
 const extractCSS = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-css.[chunkhash].css':'css/[name]-css.css');//导出css
 const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-sass.[chunkhash].css':'css/[name]-sass.css');//导出sass
 const babili = require('babili-webpack-plugin')//babel压缩
-const uglifyJs = (process.env.NODE_ENV === 'production') ? new babili() : ''
 
 module.exports = {
     devtool: process.env.NODE_ENV === 'production'?"inline-source-map":"source map",
@@ -143,7 +142,7 @@ module.exports = {
             chunks: ['other'],
         }),*/
         //丑化JS
-        uglifyJs,
+        (process.env.NODE_ENV === 'production') ? new babili() : function(){},
         //样式导出配置
         extractCSS,
         extractSass
