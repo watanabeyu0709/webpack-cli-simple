@@ -1,10 +1,15 @@
 /*
-* 总体：热加载(不含组件热加载),全局挂载,自动清理产出文件夹
-* html：html模板引擎,svg行内挂载
-* css: less sass 分离样式表 自动补全前缀hack 支持css4(与less sass 冲突 选择性使用)
-* js: 支持es6 typescript 代码分离
-* 图片：压缩 编码
-* 字体：压缩
+    总体：热加载(不含组件热加载),全局挂载,自动清理产出文件夹,区分处理开发和发布环境
+
+    html：html模板引擎,svg行内挂载
+
+    css: less sass 分离样式表 自动补全前缀hack 支持css4(与less sass 冲突 选择性使用)
+
+    js: 支持es6 typescript 代码分离 提取公共模块 丑化
+
+    图片：压缩 base64编码
+
+    字体：压缩
 */
 
 const path = require('path');
@@ -14,6 +19,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');//构建时清理
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//分离样式表
 const extractCSS = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-css.[chunkhash].css':'css/[name]-css.css');//导出css
 const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-sass.[chunkhash].css':'css/[name]-sass.css');//导出sass
+const babili = require('babili-webpack-plugin')//babel压缩
+const uglifyJs = (process.env.NODE_ENV === 'production') ? new babili() : ''
 
 module.exports = {
     devtool: process.env.NODE_ENV === 'production'?"inline-source-map":"source map",
@@ -136,13 +143,7 @@ module.exports = {
             chunks: ['other'],
         }),*/
         //丑化JS
-        new webpack.optimize.UglifyJsPlugin({
-            compress: process.env.NODE_ENV === 'production'
-        }),
-        //提出公共模块 需要页面中引用
-        /*new webpack.optimize.CommonsChunkPlugin({
-            name: 'common'
-        }),*/
+        uglifyJs,
         //样式导出配置
         extractCSS,
         extractSass

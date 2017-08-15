@@ -58,7 +58,7 @@
 
 ### npm包说明
 
-* devDependencies 为基础的配置项
+* devDependencies 为开发的配置项
 
-* dependencies 为按需配置项 现包括jquery(已在webpack全局挂载),font-awesome,lodash
+* dependencies 为项目的配置项 现包括jquery(已在webpack全局挂载),font-awesome,lodash
 
