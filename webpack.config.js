@@ -26,7 +26,7 @@ module.exports = {
     entry: {
         index: ['babel-polyfill','./src/js/index.js'],
         /* //其他页面
-        other: ['babel-polyfill','./src/js/other.js'],
+        other: ['babel-polyfill','./src/js/other.js'],*/
     },
     output: {
         filename: process.env.NODE_ENV === 'production'?'js/[name].bundle.[chunkhash].js':'js/[name].bundle.js',
