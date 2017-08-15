@@ -24,9 +24,9 @@ const babili = require('babili-webpack-plugin')//babel压缩
 module.exports = {
     devtool: process.env.NODE_ENV === 'production'?"inline-source-map":"source map",
     entry: {
-        index: './src/js/index.js',
+        index: ['babel-polyfill','./src/js/index.js'],
         /* //其他页面
-        other: './src/js/other.js'*/
+        other: ['babel-polyfill','./src/js/other.js'],
     },
     output: {
         filename: process.env.NODE_ENV === 'production'?'js/[name].bundle.[chunkhash].js':'js/[name].bundle.js',
