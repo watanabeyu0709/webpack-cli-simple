@@ -22,7 +22,7 @@ const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?
 const babili = require('babili-webpack-plugin')//babel压缩
 
 module.exports = {
-    devtool: process.env.NODE_ENV === 'production'?"inline-source-map":"source map",
+    devtool: process.env.NODE_ENV === 'production'?"cheap-module-source-map":"cheap-module-eval-source-map",
     entry: {
         index: ['babel-polyfill','./src/js/index.js'],
         /* //其他页面
@@ -125,22 +125,21 @@ module.exports = {
         }),
         //清理dist
         new CleanWebpackPlugin(['dist']),
+        //react 压缩处理
+        (process.env.NODE_ENV === 'production')?
+            new webpack.DefinePlugin({
+                "process.env": {
+                    NODE_ENV: JSON.stringify("production")
+                }
+            }):function(){},
         //自动产出html
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: __dirname + "/src/index.tmpl.html",
+            template: __dirname + "/src/template.html",
             inject: 'body',
             hash: true,
             chunks: ['index'],
         }),
-        /* //其他页面
-        new HtmlWebpackPlugin({
-            filename: 'other.html',
-            template: __dirname + "/src/other.tmpl.html",
-            inject: 'body',
-            hash: true,
-            chunks: ['other'],
-        }),*/
         //丑化JS
         (process.env.NODE_ENV === 'production') ? new babili() : function(){},
         //样式导出配置
@@ -148,3 +147,14 @@ module.exports = {
         extractSass
     ]
 };
+
+/*/!*循环自动生成HTML*!/
+for(let page in webpackConfig.entry){
+    webpackConfig.plugins.push(new HtmlWebpackPlugin({
+        filename: page+'.html',
+        template: __dirname + "/src/template.html",
+        inject: 'body',
+        hash: true,
+        chunks: [page],
+    }))
+}*/

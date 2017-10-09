@@ -20,7 +20,7 @@
 
 >> ...
 
->> index.tmpl.html 主模板/页面
+>> template.html 主模板/页面
 
 > `dist 发布环境`
 
