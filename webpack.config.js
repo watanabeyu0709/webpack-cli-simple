@@ -21,7 +21,7 @@ const extractCSS = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'
 const extractSass = new ExtractTextPlugin(process.env.NODE_ENV === 'production'?'css/[name]-sass.[chunkhash].css':'css/[name]-sass.css');//导出sass
 const babili = require('babili-webpack-plugin')//babel压缩
 
-module.exports = {
+let webpackConfig = module.exports = {
     devtool: process.env.NODE_ENV === 'production'?"cheap-module-source-map":"cheap-module-eval-source-map",
     entry: {
         index: ['babel-polyfill','./src/js/index.js'],
