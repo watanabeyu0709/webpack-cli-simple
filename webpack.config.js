@@ -67,7 +67,7 @@ let webpackConfig = module.exports = {
                         presets: [
                             ["env", {
                                 "targets": {
-                                    "browsers": ["last 2 versions", "safari >= 7"],
+                                    "browsers": ["> 1%", "last 2 versions", "not ie <= 8"],
                                     "node":"current"
                                 }
                             }]
@@ -83,30 +83,23 @@ let webpackConfig = module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [
-                    'url-loader?limit=10000',
+                    'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
                     {
-                        loader: 'img-loader',
+                        loader: 'image-webpack-loader',
                         options: {
-                            enabled: process.env.NODE_ENV === 'production',
                             gifsicle: {
-                                interlaced: false
+                                interlaced: false,
+                            },
+                            optipng: {
+                                optimizationLevel:process.env.NODE_ENV.includes('production')?7:1,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
                             },
                             mozjpeg: {
                                 progressive: true,
-                                arithmetic: false
-                            },
-                            optipng: false, // disabled
-                            pngquant: {
-                                floyd: 0.5,
-                                speed: 2
-
-
-                            },
-                            svgo: {
-                                plugins: [
-                                    { removeTitle: true },
-                                    { convertPathData: false }
-                                ]
+                                quality: 65
                             }
                         }
                     }
