@@ -64,7 +64,14 @@ let webpackConfig = module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015']
+                        presets: [
+                            ["env", {
+                                "targets": {
+                                    "browsers": ["last 2 versions", "safari >= 7"],
+                                    "node":"current"
+                                }
+                            }]
+                        ]
                     }
                 }
             },
@@ -76,23 +83,30 @@ let webpackConfig = module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [
-                    'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
+                    'url-loader?limit=10000',
                     {
-                        loader: 'image-webpack-loader',
+                        loader: 'img-loader',
                         options: {
+                            enabled: process.env.NODE_ENV === 'production',
                             gifsicle: {
-                                interlaced: false,
-                            },
-                            optipng: {
-                                optimizationLevel:process.env.NODE_ENV === 'production'?7:1,
-                            },
-                            pngquant: {
-                                quality: '65-90',
-                                speed: 4
+                                interlaced: false
                             },
                             mozjpeg: {
                                 progressive: true,
-                                quality: 65
+                                arithmetic: false
+                            },
+                            optipng: false, // disabled
+                            pngquant: {
+                                floyd: 0.5,
+                                speed: 2
+
+
+                            },
+                            svgo: {
+                                plugins: [
+                                    { removeTitle: true },
+                                    { convertPathData: false }
+                                ]
                             }
                         }
                     }
