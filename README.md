@@ -30,8 +30,6 @@
 
 >> ...
 
->> index.html
-
 > .babelrc babel配置文件
 
 > package.json 包信息

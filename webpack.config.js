@@ -117,7 +117,11 @@ let webpackConfig = module.exports = {
         ]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".tsx", ".ts", ".js"],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            '^': path.resolve(__dirname, 'src')
+        }
     },
     plugins: [
         //全局挂载
