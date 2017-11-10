@@ -40,7 +40,7 @@ let webpackConfig = module.exports = {
                 options: {
                     loaders: {
                         'css': 'style-loader!css-loader',
-                        'scss': 'style-loader!css-loader!sass-loader',
+                        'scss': 'style-loader!css-loader!postcss-loader!sass-loader',
                     }
                 },
             },
@@ -56,7 +56,7 @@ let webpackConfig = module.exports = {
                 test: /\.less$/,
                 use: extractSass.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader','postcss-loader'],
+                    use: ['css-loader', 'postcss-loader','less-loader'],
                     publicPath: "../"
                 })
             },
@@ -64,7 +64,7 @@ let webpackConfig = module.exports = {
                 test: /\.scss/i,
                 use: extractSass.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader','postcss-loader'],
+                    use: ['css-loader', 'postcss-loader','sass-loader'],
                     publicPath: "../"
                 })
             },
