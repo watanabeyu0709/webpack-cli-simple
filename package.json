@@ -1,6 +1,6 @@
 {
   "name": "webpack-cli-simple",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "selfuse webpack-cli with base config",
   "main": "index.js",
   "scripts": {

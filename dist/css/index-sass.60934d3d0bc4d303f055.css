@@ -603,102 +603,85 @@ template {
 /*flex*/
 .flex-box {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex; }
   .flex-box.flex-v {
     -webkit-box-orient: vertical;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column; }
 
 .flex-inner.flex-1 {
   -webkit-box-flex: 1;
-  -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1; }
 
 .flex-inner.flex-2 {
   -webkit-box-flex: 2;
-  -webkit-flex: 2;
   -ms-flex: 2;
   flex: 2; }
 
 .flex-inner.flex-3 {
   -webkit-box-flex: 3;
-  -webkit-flex: 3;
   -ms-flex: 3;
   flex: 3; }
 
 .flex-inner.flex-4 {
   -webkit-box-flex: 4;
-  -webkit-flex: 4;
   -ms-flex: 4;
   flex: 4; }
 
 .flex-inner.flex-5 {
   -webkit-box-flex: 5;
-  -webkit-flex: 5;
   -ms-flex: 5;
   flex: 5; }
 
 .flex-inner.flex-6 {
   -webkit-box-flex: 6;
-  -webkit-flex: 6;
   -ms-flex: 6;
   flex: 6; }
 
 .flex-inner.flex-7 {
   -webkit-box-flex: 7;
-  -webkit-flex: 7;
   -ms-flex: 7;
   flex: 7; }
 
 .flex-inner.flex-8 {
   -webkit-box-flex: 8;
-  -webkit-flex: 8;
   -ms-flex: 8;
   flex: 8; }
 
 .flex-inner.flex-9 {
   -webkit-box-flex: 9;
-  -webkit-flex: 9;
   -ms-flex: 9;
   flex: 9; }
 
 .flex-inner.flex-10 {
   -webkit-box-flex: 10;
-  -webkit-flex: 10;
   -ms-flex: 10;
   flex: 10; }
 
 .flex-inner.flex-11 {
   -webkit-box-flex: 11;
-  -webkit-flex: 11;
   -ms-flex: 11;
   flex: 11; }
 
 .flex-inner.flex-12 {
   -webkit-box-flex: 12;
-  -webkit-flex: 12;
   -ms-flex: 12;
   flex: 12; }
 
 .flex-inner.flex-align-center {
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center; }
 
 .flex-inner.flex-pack-center {
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center; }
 
 .flex-inner.flex-pack-justify {
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between; }
 
@@ -723,25 +706,25 @@ html {
     width: 100px;
     height: 100px;
     -webkit-animation: rotating 15s linear infinite;
-    animation: rotating 15s linear infinite;
+            animation: rotating 15s linear infinite;
     border-radius: 50%; }
 
 @-webkit-keyframes rotating {
   from {
     -webkit-transform: rotate(0);
-    transform: rotate(0); }
+            transform: rotate(0); }
   to {
     -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+            transform: rotate(360deg); } }
 
 @keyframes rotating {
   from {
     -webkit-transform: rotate(0);
-    transform: rotate(0); }
+            transform: rotate(0); }
   to {
     -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+            transform: rotate(360deg); } }
   #app p.muted {
     color: #a6a6a6; }
 
-/*# sourceMappingURL=index-sass.f4d730413103ee210a67.css.map*/
+/*# sourceMappingURL=index-sass.60934d3d0bc4d303f055.css.map*/

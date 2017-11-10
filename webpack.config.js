@@ -141,7 +141,8 @@ let webpackConfig = module.exports = {
             "window.jQuery": "jquery",
         }),
         //清理dist
-        new CleanWebpackPlugin(['dist']),
+        (process.env.NODE_ENV === 'production')?
+        new CleanWebpackPlugin(['dist']):function () {},
         //react 压缩处理
         (process.env.NODE_ENV === 'production')?
             new webpack.DefinePlugin({
