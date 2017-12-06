@@ -1,62 +1,36 @@
-# 这是一个简单的自用webpack脚手架
+## Introduce   
 
-### 安装步骤
+this is a simple self use cli for single-view app with webpack
 
-    1.请确保全局安装了 webpack npm
+## Base on
 
-    2.下载克隆此工程
+node `8.6.0`   
+npm `5.3.0`
 
-    3.npm install
+## Quick to start
 
-    4.npm run dev (开发环境) npm run build (发布环境)
+1.make sure you have install webpack npm with global  
+2.download this project  
+3.npm install  
+4.npm run dev `develop mode`    
+5.npm run build `build mode`  
 
-### 目录结构
+### Directory
 
-> `src 开发环境`
-
->> css
-
->> js
-
->> ...
-
->> template.html 主模板/页面
-
-> `dist 发布环境`
-
->> css
-
->> js
-
->> ...
-
-> .babelrc babel配置文件
-
-> package.json 包信息
-
-> postcss.config.js postcss配置文件
-
-> webpack.config.js webpack配置文件
-
-> node_modules 模块包
-
-### webpack 配置
-
-    总体：热加载(不含组件热加载),全局挂载,自动清理产出文件夹,区分处理开发和发布环境
-
-    html：html模板引擎,svg行内挂载
-
-    css: less sass 分离样式表 自动补全前缀hack 支持css4(与less sass 冲突 选择性使用)
-
-    js: 支持es6 typescript 代码分离 提取公共模块 丑化
-
-    图片：压缩 base64编码
-
-    字体：压缩
-
-### npm包说明
-
-* devDependencies 为开发的配置项
-
-* dependencies 为项目的配置项 现包括jquery(已在webpack全局挂载),font-awesome,lodash
-
+```
+|-- dist #build files for example
+|-- node_modules #node packages
+|-- src #dev folder  
+    |-- css #style  
+        |-- app.scss #app style  
+    |-- img #images
+    |-- js #scripts
+        |-- index.js #script
+    |-- template.html #html template for webpack
+|--- .babelrc #babel conf
+|--- .gitignore #git ignore conf
+|--- package.json #all dependencies
+|--- postcss.config.js #postcss conf
+|--- README.md #this file
+|--- webpack.config.js #webpack file
+```
