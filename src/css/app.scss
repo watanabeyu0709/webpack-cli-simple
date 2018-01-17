@@ -11,8 +11,8 @@ html{
     height: auto;
     min-height: 100%;
     position: relative;
-    background: nth($color_sim,6);
-    color: nth($color_sim,2);
+    background: #f5f5f5;
+    color: #666;
   }
 }
 
@@ -32,7 +32,7 @@ html{
   }
   p{
     &.muted{
-      color: nth($color_sim,3);
+      color: #999;
     }
   }
 }
