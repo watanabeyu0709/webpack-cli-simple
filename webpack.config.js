@@ -135,12 +135,6 @@ let webpackConfig = module.exports = {
         }
     },
     plugins: [
-        //全局挂载
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery",
-        }),
         //清理dist
         (process.env.NODE_ENV === 'production')?
         new CleanWebpackPlugin(['dist']):function () {},
