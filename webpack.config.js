@@ -76,6 +76,7 @@ let webpackConfig = module.exports = {
                     options: {
                         presets: [
                             "env",
+                            "react",
                             "stage-3"
                         ]
                     }
